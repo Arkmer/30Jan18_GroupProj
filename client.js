@@ -74,6 +74,10 @@ console.log(createPersonArray(employees));
 
 $(document).ready(onReady2);
 function onReady2(){
+  $('#reveal').on('click', theThingWeDo)
+};
+
+function theThingWeDo(){
   var arrayToBreak = createPersonArray(employees);
   for(i=0; i<arrayToBreak.length; i++){
     var onePayResult = arrayToBreak[i];
