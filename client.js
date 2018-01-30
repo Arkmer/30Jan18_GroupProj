@@ -10,3 +10,62 @@ var employees = [ atticus, jem, boo, scout, robert, mayella ];
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
 console.log(employees);
+
+function bonusCalc (ipEmployee){
+  var lBonus;
+  if (ipEmployee.reviewRating <= 2){
+    lBonus = 0
+  } else if (ipEmployee.reviewRating === 3){
+    lBonus = 4
+  } else if (ipEmployee.reviewRating === 4){
+    lBonus = 6
+  } else {
+    lBonus = 10
+  };
+  if (ipEmployee.length = 4){
+    lBonus += 5
+  };
+  if (ipEmployee.annualSalary > 65000){
+    lBonus --
+  };
+  if (lBonus > 13){
+    lBonus = 13
+  };
+  if (lBonus < 0){
+    lBonus = 0
+  };
+  lBonus = lBonus/100
+  //console.log(lBonus)
+  return lBonus;
+};
+
+function totalBonus (ipPerson){
+  var finalBonus = ipPerson.annualSalary * bonusCalc(ipPerson);
+  //console.log(ipPerson.annualSalary);
+  var output = Math.round(finalBonus)
+  return output;
+};
+
+function totalCompensation(ipPerson){
+  //console.log('totalCompensation');
+  var output = parseInt(ipPerson.annualSalary) + totalBonus(ipPerson)
+  return output;
+};
+
+function PersonCreator(ipName, ipBonusPercentage, ipTotalBonus, ipTotalComp){
+  this.name = ipName;
+  this.bonusPercentage = ipBonusPercentage;
+  this.totalBonus = ipTotalBonus;
+  this.totalComp = ipTotalComp;
+};
+
+function createPersonArray(ipEmployees){
+  var employeePayArray = [];
+  for(var i=0; i<ipEmployees.length; i++){
+    var newPerson = new PersonCreator(ipEmployees[i].name, bonusCalc(ipEmployees[i]), totalBonus(ipEmployees[i]), totalCompensation(ipEmployees[i]));
+    employeePayArray.push(newPerson);
+  }
+  return employeePayArray;
+}
+
+console.log(createPersonArray(employees));
