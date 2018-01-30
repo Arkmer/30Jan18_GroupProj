@@ -13,26 +13,28 @@ console.log(employees);
 
 function bonusCalc (ipEmployee){
   var lBonus;
-  if (ipEmployee.reviewRating <= 2){
-    lBonus = 0
-  } else if (ipEmployee.reviewRating === 3){
+  if (ipEmployee.reviewRating === 3){
     lBonus = 4
   } else if (ipEmployee.reviewRating === 4){
     lBonus = 6
   } else {
     lBonus = 10
   };
-  if (ipEmployee.length = 4){
+  if (ipEmployee.length == 4){
     lBonus += 5
   };
   if (ipEmployee.annualSalary > 65000){
     lBonus --
   };
+  if (ipEmployee.reviewRating <= 2){
+    lBonus = 0
+  }
   if (lBonus > 13){
     lBonus = 13
   };
   if (lBonus < 0){
     lBonus = 0
+
   };
   lBonus = lBonus/100
   //console.log(lBonus)
@@ -69,3 +71,20 @@ function createPersonArray(ipEmployees){
 }
 
 console.log(createPersonArray(employees));
+
+$(document).ready(onReady2);
+function onReady2(){
+  var arrayToBreak = createPersonArray(employees);
+  for(i=0; i<arrayToBreak.length; i++){
+    var onePayResult = arrayToBreak[i];
+    var name = onePayResult.name;
+    var percentage = onePayResult.bonusPercentage;
+    var totalBonus = onePayResult.totalBonus;
+    var totalComp = onePayResult.totalComp;
+
+    var paste = name + ': ' + percentage + ' , ' + totalBonus + ' , ' + totalComp
+    // $('.appender').append('<p>');
+    $('.appender').append('<p>'+paste+'</p>');
+    // $('.appender').append('</p>');
+  };
+};
